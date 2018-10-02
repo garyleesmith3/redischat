@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.variableX.label }}<br>
+            {{ form.variableX(size=32) }}<br>
+            {{ form.variableY.label }}<br>
+            {{ form.variableY(size=32) }}<br>
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <div>
+
+        {% for post in redis_client.zrange("chosenSet", 0, -1) %}
+            <div>
+                <p>
+                    {{ post }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+
